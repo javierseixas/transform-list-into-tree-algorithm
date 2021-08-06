@@ -1,22 +1,32 @@
+const asHierarchical = (person) => {
+  return {
+    id: person.id,
+    name: person.name,
+    children: [],
+  };
+};
+
+const setIntoHierarchy = (hierarchy, person) => {
+  if (hierarchy.id == person.parent) {
+    hierarchy.children.push(asHierarchical(person));
+
+    return hierarchy;
+  }
+
+  hierarchy.children.forEach((element) => {
+    setIntoHierarchy(element, person);
+  });
+  return hierarchy;
+};
+
 const createTree = (people) => {
-  const pepe = people.reduce((result, person) => {
+  return people.reduce((tree, person) => {
     if (person.parent === null) {
-      return {
-        id: person.id,
-        name: person.name,
-        children: [],
-      };
+      return asHierarchical(person);
     }
 
-    result.children.push({
-      id: person.id,
-      name: person.name,
-      children: [],
-    });
-    return result;
+    return setIntoHierarchy(tree, person);
   }, {});
-
-  return pepe;
 };
 
 module.exports = createTree;
