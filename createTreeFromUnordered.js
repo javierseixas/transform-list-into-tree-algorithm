@@ -21,7 +21,7 @@ const createTreeFromUnordered = (people) => {
     if (!alreadyHierarchized.includes(person.parent)) {
       dictionary[person.parent] =
         dictionary[person.parent]?.length > 0
-          ? dictionary[person.parent].push(asHierarchical(person))
+          ? dictionary[person.parent].concat(asHierarchical(person))
           : [asHierarchical(person)];
       return tree;
     }
