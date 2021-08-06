@@ -1,10 +1,4 @@
-const asHierarchical = (person) => {
-  return {
-    id: person.id,
-    name: person.name,
-    children: [],
-  };
-};
+const asHierarchical = require("./personFormatter");
 
 const setIntoHierarchy = (hierarchy, person) => {
   if (hierarchy.id == person.parent) {
