@@ -1,8 +1,8 @@
 const { expect } = require("@jest/globals");
 const createTree = require("../main");
 
-describe("getMostPopularBlog", () => {
-  it("one level", () => {
+describe("createTree", () => {
+  it("list with root person", () => {
     const input = [
       {
         id: 1,
@@ -10,11 +10,11 @@ describe("getMostPopularBlog", () => {
         parent: null,
       },
     ];
-    expected = {
+    const expected = {
       id: 1,
       name: "CEO",
       children: [],
     };
-    expect();
+    expect(createTree(input)).toEqual(expected);
   });
 });
