@@ -14,12 +14,12 @@ const setIntoHierarchy = (hierarchy, person) => {
 };
 
 const createTree = (people) => {
-  return people.reduce((tree, person) => {
+  return people.reduce((hierarchy, person) => {
     if (person.parent === null) {
       return asHierarchical(person);
     }
 
-    return setIntoHierarchy(tree, person);
+    return setIntoHierarchy(hierarchy, person);
   }, {});
 };
 

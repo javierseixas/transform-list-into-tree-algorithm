@@ -1,46 +1,44 @@
 const asHierarchical = require("./personFormatter");
 const { setIntoHierarchy } = require("./createTree");
 
-const mountHierarchy = (hierarchy, dictionary) => {
-  if (!(hierarchy.id in dictionary)) return hierarchy;
+const mountHierarchy = (hierarchy, hashmap) => {
+  if (!(hierarchy.id in hashmap)) return hierarchy;
 
-  hierarchy.children = (hierarchy.children || []).concat(
-    dictionary[hierarchy.id]
-  );
+  hierarchy.children = (hierarchy.children || []).concat(hashmap[hierarchy.id]);
 
-  hierarchy.children.forEach((element) => {
-    mountHierarchy(element, dictionary);
+  hierarchy.children.forEach((person) => {
+    mountHierarchy(person, hashmap);
   });
 
   return hierarchy;
 };
 
 const createTreeFromUnordered = (people) => {
-  const alreadyHierarchized = [];
-  const dictionary = {};
+  const hierarchizedIds = [];
+  const hashmap = {};
 
-  const hierarchy = people.reduce((tree, person) => {
+  const hierarchy = people.reduce((hierarchy, person) => {
+    // organize root in the hierarchy
     if (person.parent === null) {
-      alreadyHierarchized.push(person.id);
-      // return root
+      hierarchizedIds.push(person.id);
       return asHierarchical(person);
     }
 
     // Store not hierarchabled person
-    if (!alreadyHierarchized.includes(person.parent)) {
-      dictionary[person.parent] =
-        dictionary[person.parent]?.length > 0
-          ? dictionary[person.parent].concat(asHierarchical(person))
+    if (!hierarchizedIds.includes(person.parent)) {
+      hashmap[person.parent] =
+        hashmap[person.parent]?.length > 0
+          ? hashmap[person.parent].concat(asHierarchical(person))
           : [asHierarchical(person)];
-      return tree;
+      return hierarchy;
     }
 
     // set into hierarchy
-    alreadyHierarchized.push(person.id);
-    return setIntoHierarchy(tree, person);
+    hierarchizedIds.push(person.id);
+    return setIntoHierarchy(hierarchy, person);
   }, {});
 
-  return mountHierarchy(hierarchy, dictionary);
+  return mountHierarchy(hierarchy, hashmap);
 };
 
 module.exports = createTreeFromUnordered;
