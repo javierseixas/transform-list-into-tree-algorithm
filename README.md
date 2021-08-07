@@ -1,6 +1,6 @@
 # Transforming list of positions to its own hierarchy
 
-The problem: We have an list of _people_ that need to be _hierarchized_, forming a tree.
+The problem: We have an list of **people** that need to be **hierarchized**, forming a tree.
 
 ## Solutions
 
@@ -21,4 +21,4 @@ You require node and yarn installed in your system.
 ## Notes and disclaimers
 
 - Solutions reached using TDD (see commit history)
-- No big refactor for improving legibility has been applied (some comments could be replaced with "private" functions)
+- No big refactor for improving legibility has been applied (some comments could be replaced with "private" functions, and some function may be moved to independent files)
