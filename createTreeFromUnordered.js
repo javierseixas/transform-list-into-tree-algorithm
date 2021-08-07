@@ -1,18 +1,18 @@
 const asHierarchical = require("./personFormatter");
 
-const alreadyHierarchized = [];
-const dictionary = {};
-
-const mountHierarchy = (hierarchy) => {
-  if (!dictionary[hierarchy.id]) return;
+const mountHierarchy = (hierarchy, dictionary) => {
+  if (!dictionary[hierarchy.id]) return hierarchy;
   hierarchy.children = dictionary[hierarchy.id] || [];
   dictionary[hierarchy.id].forEach((element) => {
-    mountHierarchy(element);
+    mountHierarchy(element, dictionary);
   });
   return hierarchy;
 };
 
 const createTreeFromUnordered = (people) => {
+  const alreadyHierarchized = [];
+  const dictionary = {};
+
   const hierarchy = people.reduce((tree, person) => {
     if (person.parent === null) {
       alreadyHierarchized.push(person.id);
@@ -27,7 +27,7 @@ const createTreeFromUnordered = (people) => {
     }
   }, {});
 
-  return mountHierarchy(hierarchy);
+  return mountHierarchy(hierarchy, dictionary);
 };
 
 module.exports = createTreeFromUnordered;

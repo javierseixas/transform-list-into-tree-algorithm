@@ -1,4 +1,3 @@
-const { expect } = require("@jest/globals");
 const createTreeFromUnordered = require("../createTreeFromUnordered");
 
 describe("createTree", () => {
@@ -38,9 +37,7 @@ describe("createTree", () => {
       ],
     };
 
-    const result = createTreeFromUnordered(input);
-
-    expect(result).toEqual(expected);
+    expect(createTreeFromUnordered(input)).toEqual(expected);
   });
 
   it("list with three people, with reversed levelssssss", () => {
