@@ -1,5 +1,5 @@
 const { expect } = require("@jest/globals");
-const createTree = require("../createTree");
+const { createTree } = require("../createTree");
 
 describe("createTree", () => {
   it("list with root person", () => {

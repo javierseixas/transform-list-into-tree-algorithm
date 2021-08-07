@@ -23,4 +23,4 @@ const createTree = (people) => {
   }, {});
 };
 
-module.exports = createTree;
+module.exports = { createTree, setIntoHierarchy };
