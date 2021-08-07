@@ -138,4 +138,75 @@ describe("createTree", () => {
 
     expect(createTreeFromUnordered(input)).toEqual(expected);
   });
+
+  it("Unordered list with some consecutives elements", () => {
+    const input = [
+      {
+        id: 8,
+        name: "Finance Manager 1",
+        parent: 20,
+      },
+      {
+        id: 20,
+        name: "CMO",
+        parent: 15,
+      },
+      {
+        id: 345,
+        name: "Technical Manager 1",
+        parent: 4,
+      },
+      {
+        id: 15,
+        name: "CEO",
+        parent: null,
+      },
+      {
+        id: 4,
+        name: "CTO",
+        parent: 15,
+      },
+      {
+        id: 16,
+        name: "Finance Manager 2",
+        parent: 20,
+      },
+    ];
+    const expected = {
+      id: 15,
+      name: "CEO",
+      children: [
+        {
+          id: 4,
+          name: "CTO",
+          children: [
+            {
+              id: 345,
+              name: "Technical Manager 1",
+              children: [],
+            },
+          ],
+        },
+        {
+          id: 20,
+          name: "CMO",
+          children: [
+            {
+              id: 8,
+              name: "Finance Manager 1",
+              children: [],
+            },
+            {
+              id: 16,
+              name: "Finance Manager 2",
+              children: [],
+            },
+          ],
+        },
+      ],
+    };
+    const result = createTreeFromUnordered(input);
+
+    expect(result).toEqual(expected);
+  });
 });
