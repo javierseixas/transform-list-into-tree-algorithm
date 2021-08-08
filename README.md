@@ -1,6 +1,6 @@
-# Transforming list of positions to its own hierarchy
+# Transforming a list in a hierarchized tree
 
-The problem: We have an list of **people** that need to be **hierarchized**, forming a tree.
+The problem: We have a list of **people** that need to be **organized** according to a **hierarchy**, forming a tree.
 
 ## Solutions
 
@@ -12,9 +12,15 @@ The problem: We have an list of **people** that need to be **hierarchized**, for
 
 `createTreeFromUnordered.js`: Applied the same recursivity for building the structure from the root. Added a hashmap to store not hierarchable elements, during the loop, so in will be hierarchized in a second process.
 
-## Run
+## Suggestions for reading this repository
 
-You require node and yarn installed in your system.
+- It is suggested read the different test scenarios for understanding the logic of transformation from the list to the tree.
+- Then, go to the algorithms files themself, to take a glance on the solutions. The solution's description above can also give some lights of how it works.
+- Can be also interesting to see in the commit history the TDD approach for this exercise.
+
+## Run the tests
+
+You require nodejs and yarn installed in your system.
 
 `yarn test`
 
